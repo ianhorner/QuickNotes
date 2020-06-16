@@ -1,9 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Butts butts butts x2</p>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>What's up</title>
+</head>
+<body>
+    <h1>Welcome, bitch</h1>
+    <p>What's up dude this is my dope ass website. Click <a href="@Url.Action("Index", "QuickNotes")" title="QuickNotes">here</a> to go to QuickNotes, bitch.</p>
+</body>
+</html>

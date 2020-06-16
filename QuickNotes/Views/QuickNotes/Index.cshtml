@@ -1,0 +1,38 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model QuickNotes.Models.Note
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>What's up</title>
+</head>
+<body>
+    <p>What's up</p>
+
+    <form asp-action="Save" asp-controller="QuickNotes">
+        <div asp-validation-summary="All" class="input-validation-error"></div>
+
+        <p>
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" placeholder="Title" />
+            <span asp-validation-for-="Title"></span>
+        </p>
+
+        <p>
+            <label asp-for="Body"></label>
+            <textarea asp-for="Body" class="form-control" placeholder="Body"></textarea>
+            <span asp-validation-for="Body"></span>
+        </p>
+
+        <p>
+            <button type="submit" value="Save">Save</button>
+            <button type="reset" value="Reset">Cancel</button>
+        </p>
+    </form>
+</body>
+</html>
