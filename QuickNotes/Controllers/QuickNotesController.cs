@@ -7,10 +7,10 @@ using QuickNotes.Models;
 
 namespace QuickNotes.Controllers
 {
-    public class NotepadController : Controller
+    public class QuickNotesController : Controller
     {
         private readonly NoteDataContext _db;
-        public NotepadController(NoteDataContext db)
+        public QuickNotesController(NoteDataContext db)
         {
             _db = db;
         }
@@ -27,22 +27,35 @@ namespace QuickNotes.Controllers
 
             if (!String.IsNullOrWhiteSpace(note.Title) && !String.IsNullOrWhiteSpace(note.Body))
             {
-                _db.Notes.Add(note);
+                if (note.Id == 0) // If note is new
+                {
+                    _db.Notes.Add(note);
+                }
+                else // else if note is existing
+                {
+                    _db.Notes.Update(note);
+                }
+                
                 _db.SaveChanges();
             }
+            else
+            {
+                // TODO display error saying you gotta input values
+            }
 
-            return RedirectToAction("Index", "Notepad");
+            return RedirectToAction("Index", "QuickNotes");
         }
 
-        [HttpPost, Route("LoadNewNote")]
         public IActionResult LoadNewNote(Note note)
         {
-            return RedirectToAction("Index", "QuickNotes");
+            return View("Notepad");
         }
 
         public IActionResult LoadExistingNote()
         {
-            return RedirectToAction("Index", "Notepad");
+            Note note = _db.Notes.OrderByDescending(x => x.LastUpdated).First();
+
+            return View("Notepad", note);
         }
     }
 }

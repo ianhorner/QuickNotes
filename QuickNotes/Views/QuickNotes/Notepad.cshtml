@@ -14,8 +14,14 @@
 <body>
     <p>What's up</p>
 
-    <form asp-action="Save" asp-controller="Notepad">
+    <form asp-action="Save" asp-controller="QuickNotes">
         <div asp-validation-summary="All" class="input-validation-error"></div>
+
+        <p>
+            <label asp-for="Id"></label>
+            <input asp-for="Id" class="form-control" placeholder="Id" />
+            <span asp-validation-for-="Id"></span>
+        </p>
 
         <p>
             <label asp-for="Title"></label>
@@ -34,8 +40,5 @@
             <button type="reset" value="Reset">Cancel</button>
         </p>
     </form>
-
-    <button type="button" value="LoadExistingNote">Load Existing Note</button>
-    <button type="button" value="LoadExistingNote">Load Existing Note</button>
 </body>
 </html>

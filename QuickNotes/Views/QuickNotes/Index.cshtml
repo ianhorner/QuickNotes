@@ -1,0 +1,19 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model QuickNotes.Models.Note
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QuickNotes</title>
+</head>
+<body>
+    <h1>QuickNotes</h1>
+    <p><button type="button" value="LoadNewNote">Create New Note</button></p>
+    <p><a href="@Url.Action("LoadExistingNote", "QuickNotes")" title="QuickNotes">Existing note</a></p>
+</body>
+</html>
