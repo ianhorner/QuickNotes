@@ -10,19 +10,6 @@ namespace QuickNotes.Models
     public class Note
     {
         public long Id { get; set; }
-        private string _key;
-        public string Key
-        {
-            get
-            {
-                if (_key == null)
-                {
-                    _key = Regex.Replace(Title.ToLower(), "[^a-z0-9]", "-");
-                }
-                return _key;
-            }
-            set { _key = value; }
-        }
 
         [Required]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "Please enter a title.")]
@@ -33,6 +20,6 @@ namespace QuickNotes.Models
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
-        public DateTime Posted { get; set; }
+        public DateTime LastUpdated { get; set; }
     }
 }
