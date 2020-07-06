@@ -16,12 +16,7 @@
 
     <form asp-action="Save" asp-controller="QuickNotes">
         <div asp-validation-summary="All" class="input-validation-error"></div>
-
-        <p>
-            <label asp-for="Id"></label>
-            <input asp-for="Id" class="form-control" placeholder="Id" />
-            <span asp-validation-for-="Id"></span>
-        </p>
+        <input asp-for="Id" class="form-control" placeholder="Id" type="hidden"/>
 
         <p>
             <label asp-for="Title"></label>
@@ -37,7 +32,7 @@
 
         <p>
             <button type="submit" value="Save">Save</button>
-            <button type="reset" value="Reset">Cancel</button>
+            <input type="button" value="Cancel" onclick="location.href='@Url.Action("Index", "QuickNotes")'" />
         </p>
     </form>
 </body>

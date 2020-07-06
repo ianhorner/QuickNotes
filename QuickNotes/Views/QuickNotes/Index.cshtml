@@ -1,5 +1,5 @@
 ﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
-@model QuickNotes.Models.Note
+@model IEnumerable<QuickNotes.Models.Note>
 @{
     Layout = null;
 }
@@ -13,7 +13,15 @@
 </head>
 <body>
     <h1>QuickNotes</h1>
-    <p><button type="button" value="LoadNewNote">Create New Note</button></p>
-    <p><a href="@Url.Action("LoadExistingNote", "QuickNotes")" title="QuickNotes">Existing note</a></p>
+    <p><input type="button" value="Create New Note" onclick="location.href='@Url.Action("Note", "QuickNotes")'" /></p>
+
+    <p>
+        <div class="notes-list">
+            @foreach (var note in Model)
+            {
+                @await Html.PartialAsync("_NoteListEntry", note)
+            }
+        </div>
+    </p>
 </body>
 </html>

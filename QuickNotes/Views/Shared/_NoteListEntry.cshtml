@@ -1,0 +1,12 @@
+﻿@model QuickNotes.Models.Note
+@{
+    Layout = null;
+}
+
+<article class="blog-post">
+    <p>
+        @Html.ActionLink(Model.Title, "Note", "QuickNotes",
+            new { id = Model.Id }
+        )
+    </p>
+</article>

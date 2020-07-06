@@ -17,7 +17,9 @@ namespace QuickNotes.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var notes = _db.Notes.OrderByDescending(x => x.LastUpdated).Take(10).ToArray();
+
+            return View(notes);
         }
 
         [HttpPost, Route("Save")]
@@ -46,14 +48,26 @@ namespace QuickNotes.Controllers
             return RedirectToAction("Index", "QuickNotes");
         }
 
-        public IActionResult LoadNewNote(Note note)
+        // Return Notepad view with either a new note or an existing note
+        public IActionResult Note(long id = 0)
         {
-            return View("Notepad");
+            Note note;
+
+            if (id == 0)
+            {
+                note = new Note();
+            }
+            else
+            {
+                note = _db.Notes.Find(id);
+            }
+            
+            return View("Notepad", note);
         }
 
-        public IActionResult LoadExistingNote()
+        public IActionResult LoadMostRecentNote()
         {
-            Note note = _db.Notes.OrderByDescending(x => x.LastUpdated).First();
+            Note note = _db.Notes.OrderByDescending(x => x.LastUpdated).FirstOrDefault();
 
             return View("Notepad", note);
         }
